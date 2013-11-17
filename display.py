@@ -17,8 +17,17 @@ class Display:
 
     def update(self, game_state):
         self.screen.fill((0,0,0))
+        for square in game_state.get_squares():
+            self.draw_square(square)
         draw_grid(self.screen)
         pygame.display.flip()
+
+
+    def draw_square(self, square):
+        x, y = square.pos
+        size = square.size
+        color = square.color
+        pygame.draw.rect(self.screen, color, Rect(x,y, size,size))
 
 
 
