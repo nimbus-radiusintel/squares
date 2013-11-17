@@ -23,7 +23,8 @@ class GameState:
             self.enemies.append(enemy)
 
     def update(self, control_state):
-        pass
+        self.player.velocity = control_state.get_player_velocity()
+        self.player.update_position()
 
     def get_squares(self):
         yield self.player
