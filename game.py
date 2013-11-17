@@ -1,4 +1,5 @@
 import time
+import pygame
 from display import Display
 from game_state import GameState
 from control_state import ControlState
@@ -12,6 +13,7 @@ class Game(object):
         self.control_state = ControlState()
 
     def run(self):
+        pygame.init()
         while True:
             self.control_state.update()
             self.game_state.update(self.control_state)
