@@ -1,5 +1,6 @@
 from square import Square
 import random
+from maze import get_maze_squares
 
 
 WHITE = (255,255,255)
@@ -12,7 +13,7 @@ HEIGHT = 300
 
 class GameState:
     def __init__(self):
-        
+        self.maze_squares = get_maze_squares()
         self.player = Square(start = (50,50), color=BLUE)
         self.enemies = []
         for i in range(10):
@@ -28,4 +29,6 @@ class GameState:
         yield self.player
         for enemy in self.enemies:
             yield enemy
+        for maze_square in self.maze_squares:
+            yield maze_square
 
