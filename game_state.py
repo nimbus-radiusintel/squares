@@ -12,8 +12,7 @@ HEIGHT = 300
 
 class GameState:
     def __init__(self):
-        
-        self.player = Square(start = (50,50), color=BLUE)
+        self.player = Square(start = [50,50], color=BLUE)
         self.enemies = []
         for i in range(10):
             x = random.randint(0, WIDTH)
@@ -22,7 +21,8 @@ class GameState:
             self.enemies.append(enemy)
 
     def update(self, control_state):
-        pass
+        self.player.velocity = control_state.get_player_velocity()
+        self.player.update_position()
 
     def get_squares(self):
         yield self.player

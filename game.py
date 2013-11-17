@@ -18,6 +18,4 @@ class Game(object):
             self.control_state.update()
             self.game_state.update(self.control_state)
             self.display.update(self.game_state)
-            print 'running'
-            time.sleep(1)
 

@@ -1,7 +1,52 @@
+import pygame
+from pygame.locals import *
+import sys
 
 class ControlState:
+
     def __init__(self):
-        pass
+        self.up = False
+        self.down = False
+        self.left = False
+        self.right = False
 
     def update(self):
-        pass
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT: sys.exit()
+            if event.type == KEYDOWN:
+                if event.key == K_ESCAPE:
+                    sys.exit(0)
+                if event.key == K_a:
+                    self.left = True
+                if event.key == K_d:
+                    self.right = True
+                if event.key == K_w:
+                    self.up = True
+                if event.key == K_s:
+                    self.down = True
+            if event.type == KEYUP:
+                if event.key == K_a:
+                    self.left = False
+                if event.key == K_d:
+                    self.right = False
+                if event.key == K_w:
+                    self.up = False
+                if event.key == K_s:
+                    self.down = False
+
+    def get_player_velocity(self):
+        player_velocity = [0,0]
+        if (self.right and not self.left):
+            player_velocity[0] = 2
+        elif (self.left and not self.right):
+            player_velocity[0] = -2
+        else:
+            player_velocity[0] = 0
+
+        if (self.up and not self.down):
+            player_velocity[1]  = -2
+        elif (self.down and not self.up):
+            player_velocity[1] = 2
+        else:
+            player_velocity[1] = 0
+        return player_velocity
