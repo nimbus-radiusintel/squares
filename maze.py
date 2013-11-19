@@ -18,23 +18,19 @@ DIRECTIONS = (
 
 def get_maze_squares():
     maze = make_maze(5,5,1)
-    print maze
-    print len(maze)
     chunk_size = 11
     rows = []
     for i in range(chunk_size):  
         row = maze[chunk_size*(i):chunk_size*(i+1)]
         rows.append(row)
-    print rows
     mazeblocks = []
     for i in range(chunk_size):
         curr_row = rows[i]
         for j in range(chunk_size):
             if curr_row[j] == 1:
-                x = (float(j)/chunk_size)*320
-                y = (float(i)/chunk_size)*240
+                x = int((float(j)/chunk_size)*320)
+                y = int((float(i)/chunk_size)*240)
                 maze_square = Square(start = (x,y), color = (40, 200, 40))
-                print (x,y)
                 mazeblocks.append(maze_square)
     return mazeblocks
 
